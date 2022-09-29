@@ -3,7 +3,6 @@ function App() {
     const [answer, setAnswer] = React.useState("");
     const [display, setDisplay] = React.useState("0");
 
-
     const calcDisplay = (symbol) => {
         setExpression((prev) => prev + symbol);
         setDisplay((prev) => prev + symbol);
@@ -124,25 +123,25 @@ function App() {
 
 
     const calculate = () => {
-        setAnswer(eval(expression));
-        setExpression(prev => prev + "=")
-        setDisplay("")
-        document.getElementById("decimal").disabled=false;
+      setAnswer(eval(expression));
+      setExpression(prev => prev + "=");
+      setDisplay("");
+      document.getElementById("decimal").disabled=false;
     }
 
     const allClear = () => {
-        setExpression("")
-        setAnswer("")
-        setDisplay("0")
-        document.getElementById("decimal").disabled=false
+      setExpression("")
+      setAnswer("")
+      setDisplay("0")
+      document.getElementById("decimal").disabled=false
     }
 
     const deleteOne = () => {
-        setExpression(prev => prev.split("").slice(0, prev.length-1).join(""));
-        setDisplay(prev => prev.split("").slice(0, prev.length-1).join(""));
-        if (display.slice(-1)==="."){
-            document.getElementById("decimal").disabled = false;
-        };
+      setExpression(prev => prev.split("").slice(0, prev.length-1).join(""));
+      setDisplay(prev => prev.split("").slice(0, prev.length-1).join(""));
+      if (display.slice(-1)==="."){
+          document.getElementById("decimal").disabled = false;
+      };
     }
 
 
