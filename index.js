@@ -1,118 +1,8 @@
-// const keysMap = [
-//     {
-//     keyCode: 49,
-//     keyTrigger: "1"
-//     },
-//     {
-//     keyCode: 50,
-//     keyTrigger: "2"
-//     },
-//     {
-//     keyCode: 51,
-//     keyTrigger: "3"
-//     },
-//     {
-//     keyCode: 52,
-//     keyTrigger: "4"
-//     },
-//     {
-//     keyCode: 53,
-//     keyTrigger: "5"
-//     },
-//     {
-//     keyCode: 54,
-//     keyTrigger: "6"
-//     },
-//     {
-//     keyCode: 55,
-//     keyTrigger: "7"
-//     },
-//     {
-//     keyCode: 56,
-//     keyTrigger: "8"
-//     },
-//     {
-//     keyCode: 57,
-//     keyTrigger: "9"
-//     },
-//     {
-//     keyCode: 48,
-//     keyTrigger: "0"
-//     },
-//     {
-//     keyCode: 187,
-//     keyTrigger: "="
-//     },
-//     {
-//     keyCode: 91,
-//     keyTrigger: "+"
-//     },
-//     {
-//     keyCode: 91,
-//     keyTrigger: "-"
-//     },
-//     {
-//     keyCode: 91,
-//     keyTrigger: "/"
-//     },
-//     {
-//     keyCode: 91,
-//     keyTrigger: "*"
-//     },
-//     {
-//     keyCode: 190,
-//     keyTrigger: "."
-//     },
-//     {
-//     keyCode: 8,
-//     keyTrigger: "DEL"
-//     },
-//     {
-//     keyCode: 67,
-//     keyTrigger: "AC"
-//     }
-// ];
-
-
-
-
 function App() {
     const [expression, setExpression] = React.useState("");
     const [answer, setAnswer] = React.useState("");
     const [display, setDisplay] = React.useState("0");
 
-// Dangerous code. It is making the keyboard input work but each entry seems to quadruple and get caught in a loop.
-
-    // startInteraction()
-
-    // function startInteraction() {
-    //   document.addEventListener("keydown", handleKeyPress)
-    // }
-    
-    // function stopInteraction() {
-    //   document.removeEventListener("keydown", handleKeyPress)
-    // }
-    
-    // function handleKeyPress(e) {
-    //   if (e.key === "=") {
-    //     calculate()
-    //     return
-    //   }
-    
-    //   if (e.key === "Backspace" || e.key === "Delete") {
-    //     deleteOne()
-    //     return
-    //   }
-    
-    //   if (e.key === "1" ||e.key === "2" ||e.key === "3" ||e.key === "4" ||e.key === "5" ||e.key === "6" ||e.key === "7" ||e.key === "8" ||e.key === "9" ||e.key === "0" ||e.key === "/" ||e.key === "*" ||e.key === "+" ||e.key === "-" ||e.key === "." ) {
-    //     calcDisplay(e.key)
-    //     return
-    //   }
-    //   if (e.key === "c" || e.key === "C") {
-    //       allClear()
-    //       return
-    //   }
-    // };
 
     const calcDisplay = (symbol) => {
         setExpression((prev) => prev + symbol);
@@ -140,7 +30,7 @@ function App() {
             && expression[0]==="0" && expression[1].includes(".")){
             setExpression(expression + symbol);
             setDisplay(display + symbol);
-        // if input is a number and display and expression reads 0 then replace 0 with integer 
+        // if input is a number and display and expression reads 0 then replace 0 with integer
         }else if ((symbol === "1"| symbol === "2"|symbol === "3"|symbol === "4"|symbol === "5"|symbol === "6"|symbol === "7"|symbol === "8"|symbol === "9")
         && expression[0]==="0" && display[0] ==="0" && !expression.includes(".")){
             setExpression(expression.split("").slice(-1).join("") + symbol);
@@ -155,7 +45,7 @@ function App() {
             setDisplay(display)
         };
         // if input is 0 and display[0] shows operation followed by zero[1] you cannot add another zero
-        if (symbol ==="0" && (display[0] === "+"|display[0] === "-"|display[0] === "/"|display[0] === "*") 
+        if (symbol ==="0" && (display[0] === "+"|display[0] === "-"|display[0] === "/"|display[0] === "*")
         && !display.includes(".") && display[1]==="0"){
             setDisplay(display)
             setExpression(expression)
@@ -172,7 +62,7 @@ function App() {
             setExpression("0" + symbol);
         };
         // makes decimal click after an operation read 0._ and clears answer
-        if (symbol === "." 
+        if (symbol === "."
                 && (expression[expression.length-1] === "+"|expression[expression.length-1] === "-"|expression[expression.length-1] === "/"|expression[expression.length-1] === "*")
                 && (display[0] === "+"|display[0] === "-"|display[0] === "/"|display[0] === "*")) {
             setExpression(expression + "0" + symbol);
@@ -180,15 +70,15 @@ function App() {
             setAnswer("");
         };
         // makes entry of 0 after operation impossible unless combined with decimal
-        if (symbol === "0" 
+        if (symbol === "0"
                 && (expression[expression.length-1] === "+"|expression[expression.length-1] === "-"|expression[expression.length-1] === "/"|expression[expression.length-1] === "*")
                 && (display[0] === "+"|display[0] === "-"|display[0] === "/"|display[0] === "*")){
             setExpression(expression)
             setDisplay(display)
             setAnswer("")
         };
-        // makes instant zero entry impossible. not ideal but people will realise you have to just press decimal? 
-        if (symbol === "0" 
+        // makes instant zero entry impossible. not ideal but people will realise you have to just press decimal?
+        if (symbol === "0"
                 && expression ==""
                 && display==="0") {
             setExpression(expression)
@@ -201,10 +91,10 @@ function App() {
             setDisplay(symbol);
             setAnswer("");
         };
-    
-    
+
+
         // only one operation in a row
-        if ((symbol === "/"|symbol === "*"|symbol === "+") && 
+        if ((symbol === "/"|symbol === "*"|symbol === "+") &&
             (expression[expression.length-1]=="/"|
             expression[expression.length-1]=="*"|
             expression[expression.length-1]=="+")) {
@@ -230,11 +120,7 @@ function App() {
             (expression[expression.length-2]=="/"| expression[expression.length-2]=="*"| expression[expression.length-2]=="+")) {
             setExpression(prev => prev.split("").slice(0, prev.length-2).join("") + symbol);
         };
-
-
-
-        
-};
+    };
 
 
     const calculate = () => {
@@ -243,7 +129,7 @@ function App() {
         setDisplay("")
         document.getElementById("decimal").disabled=false;
     }
-    
+
     const allClear = () => {
         setExpression("")
         setAnswer("")
@@ -259,14 +145,14 @@ function App() {
         };
     }
 
-    
-    
+
+
 
     return (
         <div id="calculator">
         <div id="display-grid">
             <div id="prevDisplay">{expression}</div>
-            <div id="display">{answer}{display}</div>    
+            <div id="display">{answer}{display}</div>
         </div>
         <button onClick={allClear}data-key="c"id="clear"className="span-two">AC</button>
         <button onClick={deleteOne}data-delete id="delete">DEL</button>
